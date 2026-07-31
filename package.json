@@ -1,0 +1,23 @@
+{
+  "name": "landonkea-type-utils",
+  "version": "1.0.0",
+  "description": "TypeScript utility functions with full type annotations",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node dist/test.js",
+    "dev": "tsc && node dist/test.js"
+  },
+  "keywords": [
+    "typescript",
+    "utilities",
+    "types"
+  ],
+  "author": "landonkea",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "typescript": "^5.0.0"
+  }
+}
