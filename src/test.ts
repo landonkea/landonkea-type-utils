@@ -27,7 +27,19 @@ let passed = 0;
 let failed = 0;
 
 /**
- * Assert that two values are equal.
+ * Assert that two primitive values are equal.
+ *
+ * WHAT: Compares `actual` to `expected` with strict equality, logs a
+ * pass/fail line, and tallies the result into the module-level counters.
+ *
+ * HOW: Uses `===` directly, which is correct for primitives (numbers,
+ * strings, booleans) but would fail for objects/arrays with the same
+ * contents but different references — that case is handled separately by
+ * `assertArrayEqual` below.
+ *
+ * WHY: This is a minimal hand-rolled assertion rather than a test
+ * framework because the whole suite is meant to run with zero
+ * dependencies via plain `node dist/test.js`.
  */
 function assertEqual<T>(actual: T, expected: T, testName: string): void {
   if (actual === expected) {
@@ -41,6 +53,19 @@ function assertEqual<T>(actual: T, expected: T, testName: string): void {
 
 /**
  * Assert that two arrays are equal (deep comparison).
+ *
+ * WHAT: Compares `actual` to `expected` by contents rather than
+ * reference, logs a pass/fail line, and tallies the result.
+ *
+ * HOW: Serializes both arrays with `JSON.stringify` and compares the
+ * resulting strings, since two structurally-identical arrays are never
+ * `===` equal in JavaScript.
+ *
+ * WHY: `JSON.stringify` is a pragmatic stand-in for a real deep-equality
+ * check — good enough for this suite's plain data (numbers, strings,
+ * simple objects) without pulling in a dependency, though it would be
+ * fooled by things `JSON` can't represent faithfully (e.g. key order
+ * differences in nested objects, `undefined` values, or `NaN`).
  */
 function assertArrayEqual<T>(actual: T[], expected: T[], testName: string): void {
   const actualStr = JSON.stringify(actual);
