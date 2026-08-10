@@ -1,5 +1,5 @@
 /**
- * test.ts — Tests for type-utils.
+ * test.ts, Tests for type-utils.
  *
  * Run with: npx ts-node src/test.ts
  * Or compile and run: npm run build && npm test
@@ -34,7 +34,7 @@ let failed = 0;
  *
  * HOW: Uses `===` directly, which is correct for primitives (numbers,
  * strings, booleans) but would fail for objects/arrays with the same
- * contents but different references — that case is handled separately by
+ * contents but different references, that case is handled separately by
  * `assertArrayEqual` below.
  *
  * WHY: This is a minimal hand-rolled assertion rather than a test
@@ -62,7 +62,7 @@ function assertEqual<T>(actual: T, expected: T, testName: string): void {
  * `===` equal in JavaScript.
  *
  * WHY: `JSON.stringify` is a pragmatic stand-in for a real deep-equality
- * check — good enough for this suite's plain data (numbers, strings,
+ * check, good enough for this suite's plain data (numbers, strings,
  * simple objects) without pulling in a dependency, though it would be
  * fooled by things `JSON` can't represent faithfully (e.g. key order
  * differences in nested objects, `undefined` values, or `NaN`).

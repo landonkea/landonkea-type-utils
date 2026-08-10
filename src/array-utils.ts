@@ -1,5 +1,5 @@
 /**
- * array-utils.ts — Array manipulation utilities with TypeScript types.
+ * array-utils.ts, Array manipulation utilities with TypeScript types.
  *
  * This module provides common array operations with full type safety.
  */
@@ -14,7 +14,7 @@
  * `===`, the same equality `Set` always uses), so spreading it back into
  * an array gives the deduplicated list in original insertion order.
  *
- * WHY: This is O(n) — a Set lookup is O(1) — versus the O(n^2) you'd get
+ * WHY: This is O(n), a Set lookup is O(1), versus the O(n^2) you'd get
  * from checking `indexOf`/`includes` for every element. Because `Set`
  * uses reference equality, this only dedupes primitives and identical
  * object references, not objects that are merely "equal" by value.
@@ -73,7 +73,7 @@ export function chunk<T>(arr: T[], size: number): T[][] {
  * WHY: Recursion (rather than a fixed number of `.flat()` calls) is what
  * lets this handle arbitrarily deep nesting without knowing the depth in
  * advance. The type `(T | T[])[]` only describes one level of nesting to
- * TypeScript — deeper nesting works at runtime but isn't fully expressible
+ * TypeScript, deeper nesting works at runtime but isn't fully expressible
  * without a recursive type, which would be overkill for this utility.
  *
  * @param arr - The nested array
@@ -103,7 +103,7 @@ export function flatten<T>(arr: (T | T[])[]): T[] {
  * without silent coercion (e.g. a boolean key would just become the
  * string `"true"`/`"false"`, which is usually not what's intended). The
  * `{} as Record<K, T[]>` cast is needed because TypeScript can't prove an
- * empty object satisfies `Record<K, T[]>` up front — it's built up
+ * empty object satisfies `Record<K, T[]>` up front, it's built up
  * incrementally as keys are added.
  *
  * @param arr - The input array
@@ -210,7 +210,7 @@ export function difference<T>(arr1: T[], arr2: T[]): T[] {
  * HOW: Mirrors `difference` but keeps items present in the `Set` built
  * from `arr2` instead of excluding them.
  *
- * WHY: Same O(n + m) reasoning as `difference` — converting the lookup
+ * WHY: Same O(n + m) reasoning as `difference`, converting the lookup
  * array to a `Set` first avoids a nested-loop membership check.
  *
  * @param arr1 - The first array

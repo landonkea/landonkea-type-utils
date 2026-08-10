@@ -1,5 +1,5 @@
 /**
- * index.ts — Main entry point for type-utils.
+ * index.ts, Main entry point for type-utils.
  *
  * Re-exports all utility functions.
  */

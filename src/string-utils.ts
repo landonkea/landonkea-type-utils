@@ -1,5 +1,5 @@
 /**
- * string-utils.ts — String manipulation utilities with TypeScript types.
+ * string-utils.ts, String manipulation utilities with TypeScript types.
  *
  * This module provides common string operations with full type safety.
  */
@@ -37,7 +37,7 @@ export function capitalize(str: string): string {
  *
  * HOW: Two passes. First, the regex `/[-_\s]+(.)?/g` matches any run of
  * separator characters plus the single character immediately following
- * them, and replaces it with that character upper-cased — this both
+ * them, and replaces it with that character upper-cased, this both
  * removes the separators and capitalizes the start of each subsequent
  * word. `char` is optional (`(.)?`) to handle a trailing separator with
  * nothing after it, in which case the whole match is just removed.
@@ -74,7 +74,7 @@ export function camelCase(str: string): string {
  * upper-case letter, (4) convert any hyphens to underscores so
  * hyphenated input is also normalized.
  *
- * WHY: The steps must run in this order — lower-casing before inserting
+ * WHY: The steps must run in this order, lower-casing before inserting
  * underscores would make upper-case letters undetectable, and stripping
  * the leading underscore has to happen after it's been inserted, not
  * before.
@@ -106,7 +106,7 @@ export function snakeCase(str: string): string {
  * characters, then the suffix is appended.
  *
  * WHY: Subtracting `suffix.length` before slicing is what guarantees the
- * *total* output length never exceeds `maxLength` — a naive
+ * *total* output length never exceeds `maxLength`, a naive
  * `str.slice(0, maxLength) + suffix` would overshoot by
  * `suffix.length` characters.
  *
@@ -163,7 +163,7 @@ export function isPalindrome(str: string, caseSensitive: boolean = false): boole
  *
  * WHY: Searching from `pos + 1` rather than `pos + substring.length`
  * means overlapping matches are counted too (e.g. counting "aa" in
- * "aaa" gives 2, not 1) — this is a deliberate choice to count every
+ * "aaa" gives 2, not 1), this is a deliberate choice to count every
  * occurrence position rather than only non-overlapping ones.
  *
  * @param str - The input string
@@ -191,16 +191,16 @@ export function countOccurrences(str: string, substring: string): number {
  *
  * WHAT: Finds every substring that looks like an email address.
  *
- * HOW: Matches against a permissive email pattern — local part of
+ * HOW: Matches against a permissive email pattern, local part of
  * letters/digits/`._%+-`, an `@`, a domain of letters/digits/`.-`, and a
- * top-level domain of at least 2 letters — using the global flag so all
+ * top-level domain of at least 2 letters, using the global flag so all
  * matches (not just the first) are returned.
  *
  * WHY: `String.match` with a global regex returns `null` (not `[]`) when
  * there are no matches, so `|| []` normalizes the "nothing found" case to
  * an empty array, keeping the return type simple (`string[]`, never
  * `null`) for callers. The regex intentionally isn't a fully
- * RFC-5322-compliant email validator — that grammar is far more
+ * RFC-5322-compliant email validator, that grammar is far more
  * permissive and complex than practical text-extraction needs.
  *
  * @param str - The input string

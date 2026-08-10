@@ -1,4 +1,4 @@
-# landonkea-type-utils — Design & Workflow
+# landonkea-type-utils - Design & Workflow
 
 ## High-Level Overview
 

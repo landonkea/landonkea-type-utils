@@ -63,5 +63,5 @@ npm run dev      # build and run tests in one step
 ```
 
 Tests live in `src/test.ts` and run as plain compiled JS via
-`node dist/test.js` — no test framework dependency. `npm test` assumes
+`node dist/test.js`, no test framework dependency. `npm test` assumes
 `dist/` is already built; use `npm run dev` to build and test together.
