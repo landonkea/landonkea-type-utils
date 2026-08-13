@@ -5,14 +5,19 @@ TypeScript with full type annotations.
 
 ## Install
 
-This is a local/private package (not published to npm). To use it in
-another project on the same machine, either:
+```bash
+npm install landonkea-type-utils
+```
+
+Release candidates are published under the `next` dist-tag ahead of a
+stable release, install one explicitly with `npm install
+landonkea-type-utils@next`. See `RELEASING.md` for how versions get cut.
+
+Not on npm yet and just testing locally? Point npm at the folder instead:
 
 ```bash
 npm install /path/to/landonkea-type-utils
 ```
-
-or clone it and import from a relative path.
 
 ## Usage
 

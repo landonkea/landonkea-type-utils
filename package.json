@@ -4,6 +4,9 @@
   "description": "TypeScript utility functions with full type annotations",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "node dist/test.js",
@@ -16,6 +19,13 @@
   ],
   "author": "landonkea",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/landonkea/landonkea-type-utils.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/node": "^26.1.2",
     "typescript": "^5.0.0"
