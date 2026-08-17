@@ -80,6 +80,23 @@ function assertArrayEqual<T>(actual: T[], expected: T[], testName: string): void
   }
 }
 
+/**
+ * Assert that calling `fn` throws.
+ *
+ * WHAT: Confirms a function rejects an invalid input instead of hanging
+ * or silently producing garbage output.
+ */
+function assertThrows(fn: () => void, testName: string): void {
+  try {
+    fn();
+    console.error(`  ✗ ${testName}: expected a throw, got none`);
+    failed++;
+  } catch {
+    console.log(`  ✓ ${testName}`);
+    passed++;
+  }
+}
+
 // ========== string-utils tests ==========
 
 console.log('\n=== string-utils.ts tests ===\n');
@@ -103,6 +120,8 @@ assertEqual(snakeCase('hello-world'), 'hello_world', 'snakeCase: hyphen');
 assertEqual(truncate('Hello, World!', 10), 'Hello, ...', 'truncate: with ellipsis');
 assertEqual(truncate('Hi', 10), 'Hi', 'truncate: no truncation needed');
 assertEqual(truncate('Hello', 8, '...'), 'Hello', 'truncate: exact length');
+assertEqual(truncate('Hello, World!', 2, '...'), 'He', 'truncate: maxLength shorter than suffix');
+assertEqual(truncate('Hello, World!', 0, '...'), '', 'truncate: maxLength zero');
 
 // isPalindrome
 assertEqual(isPalindrome('racecar'), true, 'palindrome: racecar');
@@ -133,6 +152,8 @@ assertArrayEqual(unique(['a', 'b', 'a']), ['a', 'b'], 'unique: strings');
 // chunk
 assertArrayEqual(chunk([1, 2, 3, 4, 5], 2), [[1, 2], [3, 4], [5]], 'chunk: size 2');
 assertArrayEqual(chunk([1, 2, 3], 5), [[1, 2, 3]], 'chunk: larger than array');
+assertThrows(() => chunk([1, 2, 3], 0), 'chunk: size 0 throws instead of looping forever');
+assertThrows(() => chunk([1, 2, 3], -1), 'chunk: negative size throws');
 
 // flatten
 assertArrayEqual(flatten([[1, 2], [3, [4, 5]]]), [1, 2, 3, 4, 5], 'flatten: nested');

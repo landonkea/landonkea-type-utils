@@ -53,6 +53,11 @@ export function unique<T>(arr: T[]): T[] {
  * chunk([1, 2, 3], 5) // [[1, 2, 3]]
  */
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) {
+    // `i += size` never advances `i` past 0 for a non-positive size, so
+    // this would otherwise loop forever on any non-empty array.
+    throw new RangeError('chunk: size must be greater than 0');
+  }
   const chunks: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     chunks.push(arr.slice(i, i + size));

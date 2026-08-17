@@ -121,6 +121,14 @@ export function snakeCase(str: string): string {
  */
 export function truncate(str: string, maxLength: number, suffix: string = '...'): string {
   if (str.length <= maxLength) return str;
+  if (maxLength < suffix.length) {
+    // `maxLength - suffix.length` going negative would otherwise become
+    // a negative `.slice()` end, which JS resolves from the *end* of the
+    // string rather than clamping to 0, silently producing an output far
+    // longer than maxLength. There's no room for the suffix here, so
+    // just hard-truncate without it instead.
+    return str.slice(0, Math.max(0, maxLength));
+  }
   return str.slice(0, maxLength - suffix.length) + suffix;
 }
 
